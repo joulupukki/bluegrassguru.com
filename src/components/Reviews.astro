@@ -1,0 +1,46 @@
+---
+const reviews = [
+  {
+    title: "Cool Jam tunes app",
+    snippet:
+      "This is a great app to get. It helps me to learn new songs. You can even put your own songs in this app. It's great to put this app on your phone during a jam session.",
+    author: "KrisR21",
+  },
+  {
+    title: "Fantastic",
+    snippet:
+      "This is a fantastic app to have in your pocket. No more lugging around a songbook so you can remember those few words of a song that never seem to stick.",
+    author: "aytee1",
+  },
+];
+---
+
+<section id="reviews" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 text-center">
+      <h2 class="mb-4 font-heading text-3xl font-bold sm:text-4xl">
+        What Pickers Are Saying
+      </h2>
+      <p class="mx-auto max-w-2xl text-text-light">
+        Real reviews from real bluegrass musicians on the App Store.
+      </p>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      {reviews.map((r) => (
+        <div class="rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
+          <div class="mb-3 flex text-lg text-primary" aria-label="5 out of 5 stars">
+            {Array(5).fill(null).map(() => (
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <h3 class="mb-3 font-heading text-lg font-semibold">{r.title}</h3>
+          <p class="mb-4 leading-relaxed text-text-light">"{r.snippet}"</p>
+          <p class="text-sm font-medium text-text-light">&mdash; {r.author}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

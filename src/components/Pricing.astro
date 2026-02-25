@@ -1,0 +1,89 @@
+---
+import AppStoreBadge from "./AppStoreBadge.astro";
+---
+
+<section id="pricing" class="bg-surface-alt py-20 sm:py-28">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 text-center">
+      <h2 class="mb-4 font-heading text-3xl font-bold sm:text-4xl">
+        Simple, Honest Pricing
+      </h2>
+      <p class="mx-auto max-w-2xl text-text-light">
+        Get started for free. Become a Guru when you're ready for the full experience.
+      </p>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      <!-- Free Tier -->
+      <div class="rounded-xl border border-border bg-surface-raised p-8">
+        <h3 class="mb-2 font-heading text-xl font-semibold">Free</h3>
+        <div class="mb-4">
+          <span class="text-3xl font-bold">$0</span>
+        </div>
+        <p class="mb-6 text-sm text-text-light">
+          Perfect for trying out Bluegrass Guru and getting started.
+        </p>
+        <ul class="mb-8 space-y-3 text-sm">
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Up to 10 songs in your library
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            One set list with up to 5 items
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Search the web for lyrics
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Works offline
+          </li>
+        </ul>
+        <AppStoreBadge />
+      </div>
+
+      <!-- Guru Membership -->
+      <div class="rounded-xl border-2 border-highlight bg-surface-raised p-8 relative">
+        <div class="absolute -top-3 right-6 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
+          Best Value
+        </div>
+        <h3 class="mb-2 font-heading text-xl font-semibold">Guru Membership</h3>
+        <div class="mb-1">
+          <span class="text-3xl font-bold">$1.99</span>
+          <span class="text-sm text-text-light">/month</span>
+        </div>
+        <p class="mb-6 text-sm text-text-light">
+          or $5.99/year (about $0.50/month)
+        </p>
+        <p class="mb-6 text-sm text-text-light">
+          Unlock the full power of Bluegrass Guru for serious pickers.
+        </p>
+        <ul class="mb-8 space-y-3 text-sm">
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Unlimited songs in your library
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Unlimited set lists &amp; items
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            iCloud sync &amp; backup across devices
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Personal tags for organizing songs
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-0.5 text-secondary">&#10003;</span>
+            Everything in Free
+          </li>
+        </ul>
+        <AppStoreBadge />
+      </div>
+    </div>
+  </div>
+</section>

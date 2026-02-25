@@ -1,0 +1,66 @@
+---
+import AppStoreBadge from "./AppStoreBadge.astro";
+
+const links = [
+  { href: "#features", label: "Features" },
+  { href: "#screenshots", label: "Screenshots" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#about", label: "About" },
+];
+---
+
+<footer class="bg-surface-dark py-12">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <!-- Logo + tagline -->
+      <div class="text-center sm:text-left">
+        <div class="flex items-center gap-2 justify-center sm:justify-start">
+          <img
+            src="/images/app-icon.png"
+            alt="Bluegrass Guru"
+            width="32"
+            height="32"
+            class="rounded-lg"
+          />
+          <span class="font-heading text-lg font-bold text-text-on-dark">
+            Bluegrass Guru
+          </span>
+        </div>
+        <p class="mt-2 text-sm text-text-on-dark-muted">
+          The Ultimate Digital Fakebook
+        </p>
+        <div class="mt-4">
+          <AppStoreBadge />
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="flex flex-col items-center gap-2 sm:items-end">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm text-text-on-dark-muted transition-colors hover:text-primary"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-white/10 pt-6 text-center">
+      <p class="text-xs text-text-on-dark-muted">
+        &copy; {new Date().getFullYear()} Bluegrass Guru, LLC. All rights reserved.
+      </p>
+      <p class="mt-1 text-xs text-text-on-dark-muted">
+        Apple and the Apple logo are trademarks of Apple Inc.
+      </p>
+      <p class="mt-2 space-x-3">
+        <a href="/privacy" class="text-xs text-text-on-dark-muted transition-colors hover:text-primary">Privacy Policy</a>
+        <a href="/terms" class="text-xs text-text-on-dark-muted transition-colors hover:text-primary">Terms of Use</a>
+      </p>
+    </div>
+  </div>
+</footer>

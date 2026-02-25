@@ -1,0 +1,46 @@
+---
+import "@fontsource-variable/lora";
+import "@fontsource/source-sans-3/400.css";
+import "@fontsource/source-sans-3/600.css";
+import "@fontsource/source-sans-3/700.css";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "Bluegrass Guru - The Ultimate Digital Fakebook",
+  description = "Bluegrass Guru is the ultimate digital fakebook for bluegrass musicians. Keep track of songs you know, store lyrics, build set lists, and play offline on iPhone and iPad.",
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=915585580" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bluegrassguru.com" />
+    <meta property="og:image" content="https://bluegrassguru.com/images/app-icon.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-surface text-text antialiased">
+    <slot />
+  </body>
+</html>

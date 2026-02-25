@@ -1,0 +1,59 @@
+---
+import FeatureCard from "./FeatureCard.astro";
+
+const features = [
+  {
+    icon: "🎵",
+    title: "Your Song Library",
+    description:
+      "Keep track of every song you know. Store lyrics and have them at your fingertips whenever you need them — at a jam, on stage, or during practice.",
+  },
+  {
+    icon: "🔍",
+    title: "Web Search",
+    description:
+      "Search the web for song lyrics right from inside the app and save them to your personal library.",
+  },
+  {
+    icon: "📶",
+    title: "Works Offline",
+    description:
+      "No Wi-Fi at the jam session? No problem. All your songs are stored on your device so you can access lyrics anywhere.",
+  },
+  {
+    icon: "📋",
+    title: "Set Lists",
+    description:
+      "Organize songs into set lists for gigs, jams, or practice sessions. Drag and drop to reorder in seconds.",
+  },
+  {
+    icon: "🏷️",
+    title: "Tags & Favorites",
+    description:
+      "Tag songs by key, tempo, genre, or anything you like. Star your favorites so they're always one tap away.",
+  },
+  {
+    icon: "🔄",
+    title: "iCloud Sync",
+    description:
+      "Your songs, set lists, and tags sync seamlessly across all your Apple devices via iCloud.",
+  },
+];
+---
+
+<section id="features" class="bg-surface-alt py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 text-center">
+      <h2 class="mb-4 font-heading text-3xl font-bold sm:text-4xl">
+        Everything You Need at the Jam
+      </h2>
+      <p class="mx-auto max-w-2xl text-text-light">
+        Bluegrass Guru packs powerful features into a simple, beautiful app designed for real musicians.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((f) => <FeatureCard {...f} />)}
+    </div>
+  </div>
+</section>

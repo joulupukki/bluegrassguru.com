@@ -1,0 +1,42 @@
+---
+import AppStoreBadge from "./AppStoreBadge.astro";
+---
+
+<section
+  class="relative flex min-h-screen items-center justify-center overflow-hidden bg-surface-dark"
+>
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
+    <div class="mb-8">
+      <img
+        src="/images/app-icon.png"
+        alt="Bluegrass Guru app icon"
+        width="300"
+        height="300"
+        class="mx-auto shadow-lg"
+      />
+    </div>
+
+    <h1 class="mb-4 font-heading text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+      The Ultimate Digital<br />
+      <span class="text-primary">Fakebook</span>
+    </h1>
+
+    <p class="mx-auto mb-8 max-w-2xl text-lg text-text-on-dark-muted sm:text-xl">
+      Keep track of the songs you know, store lyrics, and have them at the ready for jams and practice. The digital fakebook you've always wanted.
+    </p>
+
+    <AppStoreBadge />
+
+    <p class="mt-6 text-sm text-text-on-dark-muted">
+      Free to download &middot; iPhone &amp; iPad
+    </p>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="h-6 w-6 text-text-on-dark-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>

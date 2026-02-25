@@ -1,0 +1,80 @@
+---
+const faqs = [
+  {
+    question: "What is Bluegrass Guru?",
+    answer:
+      "Bluegrass Guru is a digital fakebook app for iPhone and iPad. It helps you keep track of songs you know, store lyrics, build set lists, and have everything at the ready for jams or practice — just like a physical fakebook, but on your device.",
+  },
+  {
+    question: "Is Bluegrass Guru free?",
+    answer:
+      "Yes! You can download and use Bluegrass Guru for free. The free version lets you store up to 10 songs, create set lists, and search the web for lyrics. A Guru Membership unlocks unlimited songs, unlimited set lists, iCloud sync, personal tags, and more.",
+  },
+  {
+    question: "What devices does it support?",
+    answer:
+      "Bluegrass Guru runs on iPhone and iPad. It's designed to look great on all screen sizes, from the smallest iPhone to the largest iPad Pro.",
+  },
+  {
+    question: "Does it work without internet?",
+    answer:
+      "Absolutely. All songs in your library are stored directly on your device, so you can access them at jam sessions, festivals, or anywhere without Wi-Fi or cell service.",
+  },
+  {
+    question: "How do I add songs?",
+    answer:
+      "Search the web directly from the app to find song lyrics. You can also add songs and enter lyrics manually. Everything you save goes straight into your personal library.",
+  },
+  {
+    question: "Can I sync between my iPhone and iPad?",
+    answer:
+      "Yes! With a Guru Membership, your songs, set lists, and tags sync and back up automatically across all your Apple devices via iCloud.",
+  },
+  {
+    question: "What is a Guru Membership?",
+    answer:
+      "The Guru Membership is an optional subscription that unlocks unlimited songs, unlimited set lists, iCloud sync and backup, personal tags, and more. It's $1.99/month or $5.99/year (about $0.50/month).",
+  },
+  {
+    question: "How do I cancel my subscription?",
+    answer:
+      "You can manage or cancel your Guru Membership anytime through your Apple ID settings in the App Store. There are no cancellation fees or long-term commitments.",
+  },
+];
+---
+
+<section id="faq" class="bg-surface py-20 sm:py-28">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 text-center">
+      <h2 class="mb-4 font-heading text-3xl font-bold sm:text-4xl">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-text-light">
+        Got questions? We've got answers.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      {
+        faqs.map((faq) => (
+          <details class="group rounded-lg border border-border bg-surface-raised">
+            <summary class="flex cursor-pointer items-center justify-between px-6 py-4 font-heading font-semibold marker:content-[''] [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <svg
+                class="h-5 w-5 flex-none text-text-light transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-sm leading-relaxed text-text-light">
+              {faq.answer}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
