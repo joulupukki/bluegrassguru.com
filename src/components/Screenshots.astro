@@ -1,9 +1,9 @@
 ---
 const screenshots = [
-  { src: "/images/screenshot-library.svg", alt: "Song library view" },
-  { src: "/images/screenshot-song.svg", alt: "Song detail with chords and lyrics" },
-  { src: "/images/screenshot-setlist.svg", alt: "Set list view" },
-  { src: "/images/screenshot-search.svg", alt: "Web search for new songs" },
+  { src: "/images/screenshot-library.png", full: "/images/screenshot-library-full.png", alt: "Song library view" },
+  { src: "/images/screenshot-song.png", full: "/images/screenshot-song-full.png", alt: "Song detail with chords and lyrics" },
+  { src: "/images/screenshot-setlist.png", full: "/images/screenshot-setlist-full.png", alt: "Set list view" },
+  { src: "/images/screenshot-search.png", full: "/images/screenshot-search-full.png", alt: "Web search for new songs" },
 ];
 ---
 
@@ -20,24 +20,179 @@ const screenshots = [
 
     <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0">
       {
-        screenshots.map((s) => (
-          <div class="flex-none snap-center w-56 sm:w-52 lg:w-56">
-            <!-- iPhone frame -->
-            <div class="rounded-[2rem] border-4 border-heading bg-heading p-2 shadow-xl">
-              <div class="overflow-hidden rounded-[1.5rem] bg-white">
-                <img
-                  src={s.src}
-                  alt={s.alt}
-                  width="280"
-                  height="560"
-                  class="w-full"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
+        screenshots.map((s, i) => (
+          <button
+            type="button"
+            class="flex-none snap-center w-56 sm:w-52 lg:w-56 cursor-pointer"
+            data-lightbox-open={i}
+          >
+            <img
+              src={s.src}
+              alt={s.alt}
+              width="800"
+              height="1657"
+              class="w-full drop-shadow-xl"
+              loading="lazy"
+            />
+          </button>
         ))
       }
     </div>
   </div>
 </section>
+
+<!-- Lightbox overlay -->
+<div
+  id="screenshot-lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Screenshot viewer"
+>
+  <!-- Close button -->
+  <button
+    type="button"
+    data-lightbox-close
+    class="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+    aria-label="Close"
+  >
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Previous button -->
+  <button
+    type="button"
+    data-lightbox-prev
+    class="absolute left-2 sm:left-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+    aria-label="Previous screenshot"
+  >
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Next button -->
+  <button
+    type="button"
+    data-lightbox-next
+    class="absolute right-2 sm:right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+    aria-label="Next screenshot"
+  >
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Carousel track -->
+  <div
+    data-lightbox-track
+    class="flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
+  >
+    {
+      screenshots.map((s) => (
+        <div class="flex h-full w-full flex-none snap-center items-center justify-center p-8 sm:p-16">
+          <img
+            src={s.full}
+            alt={s.alt}
+            class="max-h-full max-w-full object-contain drop-shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Dots indicator -->
+  <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2" data-lightbox-dots>
+    {screenshots.map((_, i) => (
+      <button
+        type="button"
+        class="h-2 w-2 rounded-full bg-white/40 transition-colors"
+        data-dot={i}
+        aria-label={`Go to screenshot ${i + 1}`}
+      />
+    ))}
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('screenshot-lightbox')!;
+  const track = lightbox.querySelector('[data-lightbox-track]') as HTMLElement;
+  const dots = lightbox.querySelectorAll('[data-dot]');
+  const slides = track.children;
+  let current = 0;
+
+  function open(index: number) {
+    current = index;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    goTo(index, false);
+  }
+
+  function close() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function goTo(index: number, smooth = true) {
+    current = ((index % slides.length) + slides.length) % slides.length;
+    const slide = slides[current] as HTMLElement;
+    track.scrollTo({ left: slide.offsetLeft, behavior: smooth ? 'smooth' : 'instant' });
+    updateDots();
+  }
+
+  function updateDots() {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-white', i === current);
+      dot.classList.toggle('bg-white/40', i !== current);
+    });
+  }
+
+  // Open triggers
+  document.querySelectorAll('[data-lightbox-open]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      open(parseInt(btn.getAttribute('data-lightbox-open')!));
+    });
+  });
+
+  // Close triggers
+  lightbox.querySelector('[data-lightbox-close]')!.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === track || (e.target as HTMLElement).closest('[data-lightbox-track]') === track && !(e.target as HTMLElement).closest('img')) {
+      close();
+    }
+  });
+
+  // Prev/Next
+  lightbox.querySelector('[data-lightbox-prev]')!.addEventListener('click', () => goTo(current - 1));
+  lightbox.querySelector('[data-lightbox-next]')!.addEventListener('click', () => goTo(current + 1));
+
+  // Dot navigation
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => goTo(parseInt(dot.getAttribute('data-dot')!)));
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Sync current index on scroll (for swipe)
+  let scrollTimeout: ReturnType<typeof setTimeout>;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const scrollLeft = track.scrollLeft;
+      const slideWidth = (slides[0] as HTMLElement).offsetWidth;
+      current = Math.round(scrollLeft / slideWidth);
+      updateDots();
+    }, 50);
+  });
+</script>
