@@ -6,7 +6,11 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.bluegrassguru.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => page !== 'https://www.bluegrassguru.com/privacy/' && page !== 'https://www.bluegrassguru.com/terms/',
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
