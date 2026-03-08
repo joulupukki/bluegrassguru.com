@@ -11,6 +11,9 @@ export default defineConfig({
       filter: (page) => page !== 'https://www.bluegrassguru.com/privacy/' && page !== 'https://www.bluegrassguru.com/terms/',
     }),
   ],
+  redirects: {
+    '/privacy.html': '/privacy/',
+  },
   vite: {
     plugins: [tailwindcss()],
   },
